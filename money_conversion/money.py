@@ -5,3 +5,5 @@ class Money(object):
         self.amount = amount
         self.currency = currency.upper()
 
+    def __repr__(self):
+        return "%.2f %s" % (self.amount, self.currency)
