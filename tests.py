@@ -21,5 +21,10 @@ class MoneyClassTest(unittest.TestCase):
         self.assertEqual(85, twenty_brl.amount)
 
 
+    def test_invalid_method_pattern_call(self):
+        with self.assertRaises(AttributeError):
+            twenty_brl = self.twenty_euro.batman()
+
+
 if __name__ == '__main__':
     unittest.main()
