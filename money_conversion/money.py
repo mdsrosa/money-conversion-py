@@ -11,12 +11,17 @@ class Money(object):
         return "%.2f %s" % (self.amount, self.currency)
 
     def __getattr__(self, currency):
+        if not currency.startswith('to_'):
+            raise AttributeError
+
+        currency = currency.split('_')[1].upper()
+
         def convert():
             return self.to_currency(currency)
+
         return convert
 
     def to_currency(self, currency):
-        currency = currency.split('_')[1].upper()
         amount = self.amount
         base_currency_rates = rates.get(self.currency)
 
